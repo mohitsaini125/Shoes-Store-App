@@ -6,6 +6,7 @@ import {
   ShoppingBagIcon,
 } from "phosphor-react-native";
 import {
+  FlatList,
   Image,
   ScrollView,
   StyleSheet,
@@ -47,7 +48,7 @@ export default function HomePage() {
         />
       </View>
       <ScrollView
-        horizontal={true}
+        horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.bannerScroll}
       >
@@ -55,7 +56,7 @@ export default function HomePage() {
           <Image key={index} source={img} style={styles.banner} />
         ))}
       </ScrollView>
-      <ScrollView horizontal={true} style={styles.dots}>
+      <View style={styles.dots}>
         {[...Array(5)].map((_, index) => (
           <View
             key={index}
@@ -68,24 +69,31 @@ export default function HomePage() {
             }}
           />
         ))}
-      </ScrollView>
+      </View>
 
       <ScrollView
-        horizontal={true}
+        horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.categories}
       >
         {categories.map((category, index) => (
           <TouchableOpacity key={index} style={styles.categoryButton}>
-            <Text style={{ fontSize: 15 }}>{category}</Text>
+            <Text style={{ fontSize: 16 }}>{category}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
-      {/* <ScrollView style={styles.shoeList}>
-        {[...Array(10)].map((_, index) => (
-          <View style={styles.shoeCard}></View>
-        ))}
-      </ScrollView> */}
+      <FlatList
+        contentContainerStyle={{
+          gap: 10,
+          marginHorizontal: 15,
+        }}
+        columnWrapperStyle={{ gap: 10 }}
+        numColumns={2}
+        data={imgs}
+        renderItem={function ({ item }) {
+          return <Image source={item} style={{ height: 150, width: 160 }} />;
+        }}
+      />
     </View>
   );
 }
@@ -105,7 +113,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     backgroundColor: "#",
-    position: "absolute",
     top: 70,
     height: 80,
     width: "100%",
@@ -135,7 +142,7 @@ const styles = StyleSheet.create({
     marginHorizontal: "auto",
     height: 60,
     width: "90%",
-    marginTop: 150,
+    marginTop: 65,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "black",
@@ -150,42 +157,27 @@ const styles = StyleSheet.create({
   banner: {
     width: 320,
     height: 120,
-    marginTop: 20,
     borderRadius: 20,
     marginRight: 20,
   },
   bannerScroll: {
     marginLeft: 20,
+    marginTop: 20,
+    height: 210,
   },
   dots: {
-    position: "absolute",
-    top: 370,
-    marginLeft: 20,
-    width: "100%",
-    left: 120,
+    flexDirection: "row",
+    marginHorizontal: "auto",
+    marginTop: 10,
   },
   categories: {
-    position: "absolute",
     flexDirection: "row",
-    gap: 10,
-    marginTop: 400,
-    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 20,
   },
   categoryButton: {
-    marginRight: 10,
     borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 8,
-    paddingVertical: 7,
-  },
-  shoeList: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  shoeCard: {
-    height: 200,
-    width: 150,
-    backgroundColor: "lightgrey",
-    borderRadius: 10,
+    borderRadius: 7,
+    marginHorizontal: 5,
   },
 });
