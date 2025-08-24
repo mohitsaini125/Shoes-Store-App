@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import {
   HeartIcon,
   MagnifyingGlassIcon,
@@ -11,6 +12,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { categories, imgs } from "../constants/indexConstants";
@@ -18,6 +20,10 @@ import { categories, imgs } from "../constants/indexConstants";
 export default function Homepage() {
   return (
     <View>
+      <LinearGradient
+        colors={["darkgrey", "white"]}
+        style={styles.cornerDesign}
+      />
       <View style={styles.nikeLogoContainer}>
         <Image
           source={require("../assets/images/nike.png")}
@@ -55,9 +61,9 @@ export default function Homepage() {
         style={styles.categoriesContainer}
       >
         {categories.map((category, index) => (
-          <Text style={styles.category} key={index}>
-            {category}
-          </Text>
+          <TouchableOpacity style={styles.category} key={index}>
+            <Text>{category}</Text>
+          </TouchableOpacity>
         ))}
       </ScrollView>
       <View style={styles.shoeCard}>
@@ -141,5 +147,14 @@ const styles = StyleSheet.create({
   shoeCardImage: {
     width: 160,
     height: 110,
+  },
+  cornerDesign: {
+    position: "absolute",
+    width: 300,
+    height: 300,
+    borderRadius: 200,
+    right: -70,
+    top: -70,
+    opacity: 0.6,
   },
 });
