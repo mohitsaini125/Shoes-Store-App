@@ -3,6 +3,7 @@ import {
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingBagOpenIcon,
+  StarIcon,
   TextOutdentIcon,
 } from "phosphor-react-native";
 import {
@@ -15,15 +16,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { categories, imgs } from "../constants/indexConstants";
+import { categories, imgs, shoeImages } from "../constants/indexConstants";
 
 export default function Homepage() {
   return (
     <View>
-      <LinearGradient
-        colors={["darkgrey", "white"]}
-        style={styles.cornerDesign}
-      />
+      <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
       <View style={styles.nikeLogoContainer}>
         <Image
           source={require("../assets/images/nike.png")}
@@ -38,7 +36,7 @@ export default function Homepage() {
       <View>
         <View style={styles.searchBar}>
           <MagnifyingGlassIcon size={26} color="black" />
-          <TextInput placeholder="Search your shoes" />
+          <TextInput placeholder="Search your shoes" style={{ fontSize: 17 }} />
         </View>
       </View>
       <ScrollView
@@ -66,16 +64,51 @@ export default function Homepage() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <View style={styles.shoeCard}>
+      <View style={styles.shoeCardsContainerList}>
         <FlatList
-          data={imgs}
+          data={shoeImages}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ gap: 10 }}
           columnWrapperStyle={{ gap: 10 }}
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item }) => (
-            <Image source={item} style={styles.shoeCardImage} />
+            <View style={styles.shoeCard}>
+              <View style={styles.shoeCardImageContainer}>
+                <View>
+                  <StarIcon size={16} color="gold" />
+                  <Text style={{ fontSize: 12, fontWeight: 600 }}>4.8</Text>
+                </View>
+                <Image source={item} style={styles.shoeCardImage} />
+              </View>
+              <View style={styles.shoeCardName}>
+                <Text style={{ fontWeight: 700, marginTop: 10 }}>
+                  Nike Air Jordan
+                </Text>
+                <Text
+                  style={{ color: "gray", fontWeight: 600, marginBottom: 5 }}
+                >
+                  Men's shoes
+                </Text>
+              </View>
+              <View style={styles.shoeCardPrice}>
+                <Text style={{ fontWeight: 800, fontSize: 18, marginTop: 0 }}>
+                  $150
+                </Text>
+                <Text
+                  style={{
+                    textDecorationLine: "line-through",
+                    marginLeft: -30,
+                    marginTop: 0,
+                    color: "#888B90",
+                    fontWeight: 500,
+                  }}
+                >
+                  $150
+                </Text>
+                <HeartIcon size={22} color="black" />
+              </View>
+            </View>
           )}
         />
       </View>
@@ -139,22 +172,47 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginRight: 10,
   },
-  shoeCard: {
+
+  cornerDesign: {
+    position: "absolute",
+    width: 400,
+    height: 400,
+    borderRadius: 200,
+    right: -200,
+    top: -120,
+    opacity: 0.2,
+  },
+  shoeCardsContainerList: {
     marginTop: 20,
     alignItems: "center",
     height: 400,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  shoeCard: {
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    width: 160,
+    height: 195,
+    borderColor: "gray",
+  },
+  shoeCardImageContainer: {
+    width: 140,
+    height: 100,
+    backgroundColor: "#EEEEEE",
+    borderRadius: 10,
   },
   shoeCardImage: {
-    width: 160,
-    height: 110,
+    width: 100,
+    height: 100,
+    marginHorizontal: "auto",
+    marginVertical: "auto",
   },
-  cornerDesign: {
-    position: "absolute",
-    width: 300,
-    height: 300,
-    borderRadius: 200,
-    right: -70,
-    top: -70,
-    opacity: 0.6,
+  shoeCardName: {},
+  shoeCardPrice: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

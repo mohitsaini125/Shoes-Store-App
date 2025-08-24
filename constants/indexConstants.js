@@ -25,3 +25,21 @@ export const categories = [
   "Boots",
   "Sports",
 ];
+
+export const shoeImages = [
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+  require("../assets/images/shoe1.png"),
+];
