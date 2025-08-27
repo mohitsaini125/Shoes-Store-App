@@ -24,6 +24,8 @@ export const shoesData = [
     price: "$150",
     mrp: "$200",
     rating: 4.8,
+    description:
+      "Lightweight running shoe featuring Nike's largest Air unit for maximum comfort and impact protection during daily runs.",
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
@@ -32,6 +34,8 @@ export const shoesData = [
     price: "$180",
     mrp: "$220",
     rating: 4.7,
+    description:
+      "Premium running shoe with responsive Boost midsole and Primeknit upper for energy return and adaptive fit.",
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
@@ -40,6 +44,8 @@ export const shoesData = [
     price: "$170",
     mrp: "$210",
     rating: 4.9,
+    description:
+      "Iconic basketball sneaker with classic high-top design, premium leather construction, and legendary Jordan brand heritage.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
@@ -48,6 +54,8 @@ export const shoesData = [
     price: "$55",
     mrp: "$70",
     rating: 4.3,
+    description:
+      "Timeless canvas sneaker with rubber toe cap and classic silhouette, perfect for everyday casual wear and street style.",
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
@@ -56,6 +64,8 @@ export const shoesData = [
     price: "$65",
     mrp: "$80",
     rating: 4.5,
+    description:
+      "Classic skate shoe with durable canvas and suede upper, reinforced toe cap, and signature side stripe design.",
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
@@ -64,6 +74,8 @@ export const shoesData = [
     price: "$185",
     mrp: "$230",
     rating: 4.6,
+    description:
+      "Premium made-in-USA running shoe with ENCAP midsole technology and pigskin/mesh upper for superior comfort and durability.",
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
@@ -72,6 +84,8 @@ export const shoesData = [
     price: "$90",
     mrp: "$120",
     rating: 4.2,
+    description:
+      "Bold lifestyle sneaker with chunky retro design, mixed material upper, and RS cushioning for all-day comfort.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
@@ -80,6 +94,8 @@ export const shoesData = [
     price: "$75",
     mrp: "$95",
     rating: 4.4,
+    description:
+      "Clean and minimal tennis-inspired sneaker with soft leather upper and vintage court shoe aesthetics.",
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
@@ -88,6 +104,8 @@ export const shoesData = [
     price: "$130",
     mrp: "$160",
     rating: 4.3,
+    description:
+      "Connected running shoe with HOVR foam cushioning and UA MapMyRun integration for performance tracking and analysis.",
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
@@ -96,6 +114,8 @@ export const shoesData = [
     price: "$160",
     mrp: "$200",
     rating: 4.7,
+    description:
+      "Stability running shoe with GEL cushioning system and Dynamic DuoMax support for overpronators and long-distance comfort.",
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
@@ -104,6 +124,8 @@ export const shoesData = [
     price: "$160",
     mrp: "$195",
     rating: 4.6,
+    description:
+      "Injury-reducing running shoe with Nike React foam, Flyknit upper, and rocker-shaped sole for smooth transitions.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
@@ -112,6 +134,8 @@ export const shoesData = [
     price: "$85",
     mrp: "$100",
     rating: 4.5,
+    description:
+      "Iconic white leather tennis shoe with minimalist design and green accents, a timeless classic for casual wear.",
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
@@ -120,6 +144,8 @@ export const shoesData = [
     price: "$220",
     mrp: "$270",
     rating: 4.9,
+    description:
+      "Premium basketball sneaker featuring patent leather mudguard, carbon fiber plate, and translucent outsole for style and performance.",
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
@@ -128,6 +154,8 @@ export const shoesData = [
     price: "$190",
     mrp: "$230",
     rating: 4.8,
+    description:
+      "Waterproof work boot with premium nubuck leather, padded collar, and anti-fatigue technology for all-day comfort and durability.",
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
@@ -136,6 +164,8 @@ export const shoesData = [
     price: "$170",
     mrp: "$200",
     rating: 4.7,
+    description:
+      "Classic 8-eye ankle boot with smooth leather upper, air-cushioned sole, and distinctive yellow stitching for iconic style.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
@@ -144,6 +174,8 @@ export const shoesData = [
     price: "$98",
     mrp: "$115",
     rating: 4.4,
+    description:
+      "Sustainable casual sneaker made from eucalyptus tree fiber with merino wool lining and carbon-neutral shipping.",
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
@@ -152,6 +184,8 @@ export const shoesData = [
     price: "$140",
     mrp: "$175",
     rating: 4.6,
+    description:
+      "Neutral running shoe with DNA LOFT cushioning and segmented crash pad for smooth heel-to-toe transitions.",
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
@@ -160,6 +194,8 @@ export const shoesData = [
     price: "$85",
     mrp: "$110",
     rating: 4.3,
+    description:
+      "Ultra-cushioned walking shoe with ULTRA FLIGHT midsole and breathable mesh upper for maximum comfort during long walks.",
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
@@ -168,6 +204,8 @@ export const shoesData = [
     price: "$90",
     mrp: "$115",
     rating: 4.7,
+    description:
+      "Classic basketball-inspired sneaker with leather upper, Air-Sole unit, and pivot points for traction and style versatility.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
@@ -176,5 +214,7 @@ export const shoesData = [
     price: "$130",
     mrp: "$160",
     rating: 4.8,
+    description:
+      "Lightweight running shoe with maximum cushioning, early stage Meta-Rocker, and breathable engineered mesh upper.",
   },
 ];
