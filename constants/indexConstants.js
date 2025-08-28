@@ -19,6 +19,7 @@ export const categories = [
 export const shoesData = [
   {
     imgLink: require("../assets/images/shoe1.png"),
+    color: "#F74C4D",
     name: "Nike Air Max 270",
     shoeCategory: "Running",
     price: "$150",
@@ -29,6 +30,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
+    color: "#3887F6",
     name: "Adidas Ultraboost 22",
     shoeCategory: "Running",
     price: "$180",
@@ -39,6 +41,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
+    color: "#6A4474",
     name: "Jordan Air 1 Retro High",
     shoeCategory: "Basketball",
     price: "$170",
@@ -49,6 +52,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
+    color: "#CAE773",
     name: "Converse Chuck Taylor All Star",
     shoeCategory: "Casual",
     price: "$55",
@@ -59,6 +63,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
+    color: "#F74C4D",
     name: "Vans Old Skool",
     shoeCategory: "Skateboarding",
     price: "$65",
@@ -69,6 +74,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
+    color: "#3887F6",
     name: "New Balance 990v5",
     shoeCategory: "Running",
     price: "$185",
@@ -79,6 +85,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
+    color: "#6A4474",
     name: "Puma RS-X3",
     shoeCategory: "Lifestyle",
     price: "$90",
@@ -89,6 +96,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
+    color: "#CAE773",
     name: "Reebok Club C 85",
     shoeCategory: "Casual",
     price: "$75",
@@ -99,6 +107,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
+    color: "#F74C4D",
     name: "Under Armour HOVR Phantom 3",
     shoeCategory: "Running",
     price: "$130",
@@ -109,6 +118,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
+    color: "#3887F6",
     name: "ASICS Gel-Kayano 29",
     shoeCategory: "Running",
     price: "$160",
@@ -119,6 +129,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
+    color: "#6A4474",
     name: "Nike React Infinity Run Flyknit 3",
     shoeCategory: "Running",
     price: "$160",
@@ -129,6 +140,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
+    color: "#CAE773",
     name: "Adidas Stan Smith",
     shoeCategory: "Casual",
     price: "$85",
@@ -139,6 +151,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
+    color: "#F74C4D",
     name: "Air Jordan 11 Retro",
     shoeCategory: "Basketball",
     price: "$220",
@@ -149,6 +162,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
+    color: "#3887F6",
     name: "Timberland 6-Inch Premium Boot",
     shoeCategory: "Boots",
     price: "$190",
@@ -159,6 +173,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
+    color: "#6A4474",
     name: "Dr. Martens 1460 Original",
     shoeCategory: "Boots",
     price: "$170",
@@ -169,6 +184,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
+    color: "#CAE773",
     name: "Allbirds Tree Runners",
     shoeCategory: "Casual",
     price: "$98",
@@ -179,6 +195,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe1.png"),
+    color: "#F74C4D",
     name: "Brooks Ghost 15",
     shoeCategory: "Running",
     price: "$140",
@@ -189,6 +206,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe2.png"),
+    color: "#3887F6",
     name: "Skechers Max Cushioning Elite",
     shoeCategory: "Walking",
     price: "$85",
@@ -199,6 +217,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe3.png"),
+    color: "#6A4474",
     name: "Nike Air Force 1 '07",
     shoeCategory: "Casual",
     price: "$90",
@@ -209,6 +228,7 @@ export const shoesData = [
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
+    color: "#CAE773",
     name: "Hoka One One Clifton 9",
     shoeCategory: "Running",
     price: "$130",

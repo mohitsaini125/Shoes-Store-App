@@ -56,13 +56,21 @@ export default function shoeDetails() {
           {[...Array(5)].map((_, i) => (
             <View key={i} style={{ flexDirection: "row" }}>
               {[...Array(3)].map((_, j) => (
-                <View key={j} style={styles.s1} />
+                <View
+                  key={j}
+                  style={{ ...styles.s1, backgroundColor: `${item.color}` }}
+                />
               ))}
             </View>
           ))}
         </View>
         <View style={styles.shoeBackLower}>
-          <View style={styles.shoeBackLowerLeft}>
+          <View
+            style={{
+              ...styles.shoeBackLowerLeft,
+              backgroundColor: `${item.color}`,
+            }}
+          >
             {[...Array(18)].map((_, i) => (
               <View key={i} style={{ flexDirection: "row" }}>
                 {[...Array(10)].map((_, j) => (
@@ -107,7 +115,9 @@ export default function shoeDetails() {
               borderRadius: 10,
             }}
           >
-            <HeartIcon size={20} color="orange" weight="fill" />
+            <TouchableOpacity>
+              <HeartIcon size={20} color="black" />
+            </TouchableOpacity>
           </View>
           <View
             style={{
@@ -136,8 +146,9 @@ export default function shoeDetails() {
               style={{
                 height: 18,
                 width: 18,
-                backgroundColor: "orange",
+                backgroundColor: `${item.color}`,
                 borderRadius: 5,
+                borderWidth: 0.5,
               }}
             />
             <Text>Color</Text>
@@ -239,7 +250,7 @@ const styles = StyleSheet.create({
     height: 3,
     width: 3,
     borderRadius: 10,
-    backgroundColor: "orange",
+    // backgroundColor: "orange",
     margin: 5,
   },
   s2: {
@@ -254,7 +265,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   shoeBackLowerLeft: {
-    backgroundColor: "#F2660E",
+    // backgroundColor: "#F2660E",
     padding: 25,
     borderRadius: 20,
   },
