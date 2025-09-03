@@ -9,10 +9,22 @@ import {
   StarIcon,
   TextOutdentIcon,
 } from "phosphor-react-native";
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { shoesData } from "../../constants/indexConstants";
 export default function shoeDetails() {
+  const [shoeItem, setShoeItem] = useState([]);
   const params = useLocalSearchParams();
-  const item = JSON.parse(params.item);
+  const Id = params.id;
+  useEffect(function () {
+    shoesData?.filter(function (item) {
+      if (item.shoeID == Id) {
+        setShoeItem(item);
+        return true;
+      }
+      return false;
+    });
+  });
   return (
     <View>
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
@@ -22,7 +34,7 @@ export default function shoeDetails() {
             <CaretCircleLeftIcon size={25} color="black" weight="fill" />
           </Link>
           <Image
-            source={require("../assets/images/nike.png")}
+            source={require("../../assets/images/nike.png")}
             style={styles.nikeLogo}
           />
         </View>
@@ -41,14 +53,14 @@ export default function shoeDetails() {
       </View>
       <View style={styles.shoeNameRatingContainer}>
         <View style={styles.shoeNameHalf1}>
-          <Text style={{ fontSize: 16, fontWeight: 700 }}>{item.name}</Text>
+          <Text style={{ fontSize: 16, fontWeight: 700 }}>{shoeItem.name}</Text>
           <Text style={{ fontSize: 16, fontWeight: 600, color: "#C1BDBD" }}>
-            {item.shoeCategory}
+            {shoeItem.shoeCategory}
           </Text>
         </View>
         <View style={styles.shoeNameHalf2}>
           <StarIcon size={15} color="gold" weight="fill" />
-          <Text>{item.rating}</Text>
+          <Text>{shoeItem.rating}</Text>
         </View>
       </View>
       <View style={styles.shoeBackgroundContainer}>
@@ -58,7 +70,7 @@ export default function shoeDetails() {
               {[...Array(3)].map((_, j) => (
                 <View
                   key={j}
-                  style={{ ...styles.s1, backgroundColor: `${item.color}` }}
+                  style={{ ...styles.s1, backgroundColor: "darkorange" }}
                 />
               ))}
             </View>
@@ -68,7 +80,7 @@ export default function shoeDetails() {
           <View
             style={{
               ...styles.shoeBackLowerLeft,
-              backgroundColor: `${item.color}`,
+              backgroundColor: "darkorange",
             }}
           >
             {[...Array(18)].map((_, i) => (
@@ -85,12 +97,14 @@ export default function shoeDetails() {
         </View>
       </View>
       <View style={styles.shoeImageContainer}>
-        <Image source={item.imgLink} style={styles.shoeImage} />
+        <Image source={shoeItem.imgLink} style={styles.shoeImage} />
       </View>
       <View style={styles.amountSizeColor}>
         <View style={styles.amountContainer}>
           <View style={{ flexDirection: "row", gap: 10, alignItems: "center" }}>
-            <Text style={{ fontSize: 32, fontWeight: 700 }}>{item.price}</Text>
+            <Text style={{ fontSize: 32, fontWeight: 700 }}>
+              {shoeItem.price}
+            </Text>
             <Text
               style={{
                 fontSize: 18,
@@ -99,7 +113,7 @@ export default function shoeDetails() {
                 color: "gray",
               }}
             >
-              {item.mrp}
+              {shoeItem.mrp}
             </Text>
           </View>
           <Text style={{ color: "red", fontSize: 12, fontWeight: 600 }}>
@@ -146,7 +160,7 @@ export default function shoeDetails() {
               style={{
                 height: 18,
                 width: 18,
-                backgroundColor: `${item.color}`,
+                backgroundColor: `${shoeItem.color}`,
                 borderRadius: 5,
                 borderWidth: 0.5,
               }}
@@ -157,7 +171,7 @@ export default function shoeDetails() {
         </View>
       </View>
       <View style={styles.description}>
-        <Text numberOfLines={3}>{item.description}</Text>
+        <Text numberOfLines={3}>{shoeItem.description}</Text>
       </View>
       <View style={styles.cartBuyContainer}>
         <TouchableOpacity>
@@ -184,7 +198,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginHorizontal: 20,
     justifyContent: "space-between",
-    alignItems: "center",
+    alignshoeItems: "center",
   },
   backButton: {
     borderWidth: 1,
@@ -205,7 +219,7 @@ const styles = StyleSheet.create({
   },
   headerHalf2: {
     flexDirection: "row",
-    alignItems: "center",
+    alignshoeItems: "center",
     gap: 15,
   },
   cornerDesign: {
@@ -227,7 +241,7 @@ const styles = StyleSheet.create({
   shoeNameHalf2: {
     flexDirection: "row",
     gap: 2,
-    alignItems: "center",
+    alignshoeItems: "center",
     borderWidth: 1.5,
     borderColor: "lightgray",
     paddingHorizontal: 10,
@@ -244,7 +258,7 @@ const styles = StyleSheet.create({
     width: 50,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignshoeItems: "center",
   },
   s1: {
     height: 3,
@@ -301,7 +315,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   sizeContainer: {
-    alignItems: "flex-end",
+    alignshoeItems: "flex-end",
     gap: 15,
   },
   description: {

@@ -1,9 +1,9 @@
 export const imgs = [
   require("../assets/images/banner1.png"),
-  require("../assets/images/banner2.png"),
+  require("../assets/images/banner2.jpg"),
   require("../assets/images/banner3.png"),
-  require("../assets/images/banner1.png"),
-  require("../assets/images/banner2.png"),
+  require("../assets/images/banner4.webp"),
+  require("../assets/images/banner2.jpg"),
 ];
 
 export const categories = [
@@ -25,6 +25,7 @@ export const shoesData = [
     price: "$150",
     mrp: "$200",
     rating: 4.8,
+    shoeID: 1,
     description:
       "Lightweight running shoe featuring Nike's largest Air unit for maximum comfort and impact protection during daily runs.",
   },
@@ -36,6 +37,7 @@ export const shoesData = [
     price: "$180",
     mrp: "$220",
     rating: 4.7,
+    shoeID: 2,
     description:
       "Premium running shoe with responsive Boost midsole and Primeknit upper for energy return and adaptive fit.",
   },
@@ -47,17 +49,19 @@ export const shoesData = [
     price: "$170",
     mrp: "$210",
     rating: 4.9,
+    shoeID: 3,
     description:
       "Iconic basketball sneaker with classic high-top design, premium leather construction, and legendary Jordan brand heritage.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
-    color: "#CAE773",
+    color: "red",
     name: "Converse Chuck Taylor All Star",
     shoeCategory: "Casual",
     price: "$55",
     mrp: "$70",
     rating: 4.3,
+    shoeID: 4,
     description:
       "Timeless canvas sneaker with rubber toe cap and classic silhouette, perfect for everyday casual wear and street style.",
   },
@@ -69,6 +73,7 @@ export const shoesData = [
     price: "$65",
     mrp: "$80",
     rating: 4.5,
+    shoeID: 5,
     description:
       "Classic skate shoe with durable canvas and suede upper, reinforced toe cap, and signature side stripe design.",
   },
@@ -80,6 +85,7 @@ export const shoesData = [
     price: "$185",
     mrp: "$230",
     rating: 4.6,
+    shoeID: 6,
     description:
       "Premium made-in-USA running shoe with ENCAP midsole technology and pigskin/mesh upper for superior comfort and durability.",
   },
@@ -91,17 +97,19 @@ export const shoesData = [
     price: "$90",
     mrp: "$120",
     rating: 4.2,
+    shoeID: 7,
     description:
       "Bold lifestyle sneaker with chunky retro design, mixed material upper, and RS cushioning for all-day comfort.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
-    color: "#CAE773",
+    color: "red",
     name: "Reebok Club C 85",
     shoeCategory: "Casual",
     price: "$75",
     mrp: "$95",
     rating: 4.4,
+    shoeID: 8,
     description:
       "Clean and minimal tennis-inspired sneaker with soft leather upper and vintage court shoe aesthetics.",
   },
@@ -113,6 +121,7 @@ export const shoesData = [
     price: "$130",
     mrp: "$160",
     rating: 4.3,
+    shoeID: 9,
     description:
       "Connected running shoe with HOVR foam cushioning and UA MapMyRun integration for performance tracking and analysis.",
   },
@@ -124,6 +133,7 @@ export const shoesData = [
     price: "$160",
     mrp: "$200",
     rating: 4.7,
+    shoeID: 10,
     description:
       "Stability running shoe with GEL cushioning system and Dynamic DuoMax support for overpronators and long-distance comfort.",
   },
@@ -135,17 +145,19 @@ export const shoesData = [
     price: "$160",
     mrp: "$195",
     rating: 4.6,
+    shoeID: 11,
     description:
       "Injury-reducing running shoe with Nike React foam, Flyknit upper, and rocker-shaped sole for smooth transitions.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
-    color: "#CAE773",
+    color: "red",
     name: "Adidas Stan Smith",
     shoeCategory: "Casual",
     price: "$85",
     mrp: "$100",
     rating: 4.5,
+    shoeID: 12,
     description:
       "Iconic white leather tennis shoe with minimalist design and green accents, a timeless classic for casual wear.",
   },
@@ -157,6 +169,7 @@ export const shoesData = [
     price: "$220",
     mrp: "$270",
     rating: 4.9,
+    shoeID: 13,
     description:
       "Premium basketball sneaker featuring patent leather mudguard, carbon fiber plate, and translucent outsole for style and performance.",
   },
@@ -168,6 +181,7 @@ export const shoesData = [
     price: "$190",
     mrp: "$230",
     rating: 4.8,
+    shoeID: 14,
     description:
       "Waterproof work boot with premium nubuck leather, padded collar, and anti-fatigue technology for all-day comfort and durability.",
   },
@@ -179,17 +193,19 @@ export const shoesData = [
     price: "$170",
     mrp: "$200",
     rating: 4.7,
+    shoeID: 15,
     description:
       "Classic 8-eye ankle boot with smooth leather upper, air-cushioned sole, and distinctive yellow stitching for iconic style.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
-    color: "#CAE773",
+    color: "red",
     name: "Allbirds Tree Runners",
     shoeCategory: "Casual",
     price: "$98",
     mrp: "$115",
     rating: 4.4,
+    shoeID: 16,
     description:
       "Sustainable casual sneaker made from eucalyptus tree fiber with merino wool lining and carbon-neutral shipping.",
   },
@@ -201,6 +217,7 @@ export const shoesData = [
     price: "$140",
     mrp: "$175",
     rating: 4.6,
+    shoeID: 17,
     description:
       "Neutral running shoe with DNA LOFT cushioning and segmented crash pad for smooth heel-to-toe transitions.",
   },
@@ -212,6 +229,7 @@ export const shoesData = [
     price: "$85",
     mrp: "$110",
     rating: 4.3,
+    shoeID: 18,
     description:
       "Ultra-cushioned walking shoe with ULTRA FLIGHT midsole and breathable mesh upper for maximum comfort during long walks.",
   },
@@ -223,17 +241,19 @@ export const shoesData = [
     price: "$90",
     mrp: "$115",
     rating: 4.7,
+    shoeID: 19,
     description:
       "Classic basketball-inspired sneaker with leather upper, Air-Sole unit, and pivot points for traction and style versatility.",
   },
   {
     imgLink: require("../assets/images/shoe4.png"),
-    color: "#CAE773",
+    color: "red",
     name: "Hoka One One Clifton 9",
     shoeCategory: "Running",
     price: "$130",
     mrp: "$160",
     rating: 4.8,
+    shoeID: 20,
     description:
       "Lightweight running shoe with maximum cushioning, early stage Meta-Rocker, and breathable engineered mesh upper.",
   },

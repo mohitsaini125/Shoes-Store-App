@@ -1,4 +1,5 @@
-import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Link } from "expo-router";
 import { HeartIcon, StarIcon } from "phosphor-react-native";
 import {
   Image,
@@ -9,16 +10,27 @@ import {
   View,
 } from "react-native";
 
-export default function shoeCard({ item }) {
-  const router = useRouter();
-  function handlePress() {
-    router.push({
-      pathname: "/shoeDetails",
-      params: { item: JSON.stringify(item) },
-    });
+export default function shoeCard({ item, favShoes, setFavShoes }) {
+  function handlePress() {}
+  const isfav = (favShoes ?? []).find(function (shoe) {
+    if (item.shoeID == shoe.shoeID) return true;
+  });
+  function toggleLike() {
+    if (isfav) {
+      const updatedFavShoes = favShoes.filter(function (shoe) {
+        if (!(item.shoeID == shoe.shoeID)) return true;
+      });
+      setFavShoes(updatedFavShoes);
+      AsyncStorage.setItem("fav-shoes", JSON.stringify(updatedFavShoes));
+    } else {
+      const arr = [...favShoes];
+      arr.push(item);
+      setFavShoes(arr);
+      AsyncStorage.setItem("fav-shoes", JSON.stringify(arr));
+    }
   }
   return (
-    <TouchableOpacity onPress={handlePress}>
+    <Link href={`/detailsFolder/${item.shoeID}`}>
       <View style={styles.shoeCard}>
         <View style={{ borderRadius: 10, overflow: "hidden" }}>
           <ImageBackground source={require("../assets/images/dotted_bgc.jpg")}>
@@ -59,12 +71,16 @@ export default function shoeCard({ item }) {
           >
             {item.mrp}
           </Text>
-          <TouchableOpacity style={styles.likeButton}>
-            <HeartIcon size={20} color="black" />
+          <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
+            <HeartIcon
+              size={22}
+              color="black"
+              weight={isfav ? "fill" : "light"}
+            />
           </TouchableOpacity>
         </View>
       </View>
-    </TouchableOpacity>
+    </Link>
   );
 }
 
@@ -114,11 +130,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   likeButton: {
-    height: 25,
-    width: 25,
+    // height: 25,
+    // width: 25,
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.2)",
-    borderRadius: 40,
+    // boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.2)",
+    // borderRadius: 40,
   },
 });

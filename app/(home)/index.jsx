@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import {
@@ -7,7 +8,9 @@ import {
   TextOutdentIcon,
   X,
 } from "phosphor-react-native";
+import { useEffect, useState } from "react";
 import {
+  Dimensions,
   FlatList,
   Image,
   ScrollView,
@@ -17,16 +20,30 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import ShoeCard from "../components/shoeCard";
-import { categories, imgs, shoesData } from "../constants/indexConstants";
+import ShoeCard from "../../components/shoeCard";
+import { categories, imgs, shoesData } from "../../constants/indexConstants";
+const { width } = Dimensions.get("window");
 
 export default function Homepage() {
+  const [favShoes, setFavShoes] = useState([]);
+  useEffect(function () {
+    AsyncStorage.getItem("fav-shoes").then(function (data) {
+      const storedShoes = data ? JSON.parse(data) : [];
+      setFavShoes(storedShoes);
+    });
+  }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
+  function handleScroll(event) {
+    const scrollX = event.nativeEvent.contentOffset.x;
+    const index = Math.round(scrollX / width);
+    setActiveIndex(index);
+  }
   return (
     <View>
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
       <View style={styles.nikeLogoContainer}>
         <Image
-          source={require("../assets/images/nike.png")}
+          source={require("../../assets/images/nike.png")}
           style={styles.nikeLogo}
         />
         <View style={{ flexDirection: "row", gap: 20 }}>
@@ -57,6 +74,9 @@ export default function Homepage() {
       </View>
       <ScrollView
         horizontal
+        pagingEnabled
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
         style={styles.banner}
       >
@@ -65,8 +85,14 @@ export default function Homepage() {
         ))}
       </ScrollView>
       <View style={styles.dotContainer}>
-        {[...Array(5)].map((_, index) => (
-          <View key={index} style={styles.dot} />
+        {imgs.map((_, index) => (
+          <View
+            key={index}
+            style={{
+              ...styles.dot,
+              backgroundColor: index == activeIndex ? "black" : "lightgray",
+            }}
+          />
         ))}
       </View>
       <ScrollView
@@ -89,13 +115,18 @@ export default function Homepage() {
           contentContainerStyle={{ gap: 10 }}
           columnWrapperStyle={{ gap: 10 }}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => <ShoeCard item={item} />}
+          renderItem={({ item }) => (
+            <ShoeCard
+              item={item}
+              favShoes={favShoes}
+              setFavShoes={setFavShoes}
+            />
+          )}
         />
       </View>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   nikeLogoContainer: {
     flexDirection: "row",
@@ -126,7 +157,6 @@ const styles = StyleSheet.create({
     width: 320,
     height: 100,
     borderRadius: 10,
-    marginRight: 20,
   },
   dotContainer: {
     flexDirection: "row",
@@ -138,7 +168,6 @@ const styles = StyleSheet.create({
   dot: {
     width: 8,
     height: 8,
-    borderWidth: 1,
     borderRadius: 5,
   },
   categoriesContainer: {
