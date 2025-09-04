@@ -87,12 +87,12 @@ export default function shoeCard({ item, favShoes, setFavShoes }) {
 const styles = StyleSheet.create({
   shoeCard: {
     borderWidth: 0.5,
-    borderRadius: 10,
+    borderRadius: 6,
     padding: 5,
     width: 165,
     height: 195,
     borderColor: "gray",
-    boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.4)",
+    boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.3)",
   },
   shoeCardImageContainer: {
     width: 140,

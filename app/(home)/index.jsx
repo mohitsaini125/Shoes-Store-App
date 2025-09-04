@@ -8,7 +8,7 @@ import {
   TextOutdentIcon,
   X,
 } from "phosphor-react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
@@ -25,6 +25,29 @@ import { categories, imgs, shoesData } from "../../constants/indexConstants";
 const { width } = Dimensions.get("window");
 
 export default function Homepage() {
+  const [updatedShoesData, setUpdatedShoesData] = useState([]);
+  const [input, setInput] = useState("");
+  const inputRef = useRef(null);
+  function clear() {
+    setInput("");
+    setUpdatedShoesData(shoesData);
+    inputRef.current?.blur();
+  }
+  useEffect(function () {
+    setUpdatedShoesData(shoesData);
+  }, []);
+  function handleSearch(value) {
+    setInput(value);
+    if (!value.trim()) setUpdatedShoesData(shoesData);
+    try {
+      const newArr = shoesData.filter(function (shoe) {
+        if (shoe.name.includes(value.trim())) return true;
+      });
+      setUpdatedShoesData(newArr);
+    } catch (err) {
+      setUpdatedShoesData([]);
+    }
+  }
   const [favShoes, setFavShoes] = useState([]);
   useEffect(function () {
     AsyncStorage.getItem("fav-shoes").then(function (data) {
@@ -64,10 +87,13 @@ export default function Homepage() {
             <MagnifyingGlassIcon size={26} color="black" />
           </TouchableOpacity>
           <TextInput
+            ref={inputRef}
             placeholder="Search your shoes"
             style={{ fontSize: 17, width: 230 }}
+            value={input}
+            onChangeText={handleSearch}
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={clear}>
             <X size={23} color="black" />
           </TouchableOpacity>
         </View>
@@ -109,11 +135,11 @@ export default function Homepage() {
 
       <View style={styles.shoeCardsContainerList}>
         <FlatList
-          data={shoesData}
+          data={updatedShoesData}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ gap: 10 }}
-          columnWrapperStyle={{ gap: 10 }}
+          contentContainerStyle={{ gap: 5 }}
+          columnWrapperStyle={{ gap: 5 }}
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item }) => (
             <ShoeCard
@@ -132,7 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 30,
-    marginTop: 60,
+    marginTop: 50,
     alignItems: "center",
   },
   nikeLogo: {
@@ -144,14 +170,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
     paddingHorizontal: 10,
-    marginTop: 20,
+    marginTop: 16,
     borderWidth: 1,
     marginHorizontal: 20,
     borderRadius: 10,
   },
   banner: {
     marginHorizontal: 20,
-    marginTop: 20,
+    marginTop: 16,
   },
   bannerImage: {
     width: 320,
@@ -166,12 +192,12 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   dot: {
-    width: 8,
-    height: 8,
+    width: 7,
+    height: 7,
     borderRadius: 5,
   },
   categoriesContainer: {
-    marginTop: 20,
+    marginTop: 12,
     marginLeft: 10,
   },
   category: {
@@ -180,7 +206,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginRight: 10,
-    boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.3)",
+    boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.3)",
   },
 
   cornerDesign: {
@@ -193,7 +219,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
   shoeCardsContainerList: {
-    marginTop: 20,
+    marginTop: 15,
     alignItems: "center",
     height: 400,
     borderRadius: 10,

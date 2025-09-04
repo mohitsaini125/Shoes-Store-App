@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useLocalSearchParams } from "expo-router";
 import {
@@ -24,7 +25,31 @@ export default function shoeDetails() {
       }
       return false;
     });
+  }, []);
+  const [favShoes, setFavShoes] = useState([]);
+  useEffect(function () {
+    AsyncStorage.getItem("fav-shoes").then(function (data) {
+      const storedFavShoes = data ? JSON.parse(data) : [];
+      setFavShoes(storedFavShoes);
+    });
+  }, []);
+  const isfav = (favShoes ?? []).find(function (shoe) {
+    if (Id == shoe.shoeID) return true;
   });
+  function toggleLike() {
+    if (isfav) {
+      const updatedFavShoes = favShoes.filter(function (shoe) {
+        if (!(Id == shoe.shoeID)) return true;
+      });
+      setFavShoes(updatedFavShoes);
+      AsyncStorage.setItem("fav-shoes", JSON.stringify(updatedFavShoes));
+    } else {
+      const arr = [...favShoes];
+      arr.push(shoeItem);
+      setFavShoes(arr);
+      AsyncStorage.setItem("fav-shoes", JSON.stringify(arr));
+    }
+  }
   return (
     <View>
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
@@ -129,18 +154,23 @@ export default function shoeDetails() {
               borderRadius: 10,
             }}
           >
-            <TouchableOpacity>
-              <HeartIcon size={20} color="black" />
+            <TouchableOpacity onPress={toggleLike}>
+              <HeartIcon
+                size={20}
+                color="black"
+                weight={isfav ? "fill" : "light"}
+              />
             </TouchableOpacity>
           </View>
           <View
             style={{
               flexDirection: "row",
-              gap: 5,
+              gap: 20,
               borderWidth: 1.2,
               borderColor: "gray",
               padding: 5,
               borderRadius: 10,
+              paddingLeft: 10,
             }}
           >
             <Text>10 UK</Text>
@@ -315,7 +345,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   sizeContainer: {
-    alignshoeItems: "flex-end",
+    alignItems: "flex-end",
     gap: 15,
   },
   description: {
