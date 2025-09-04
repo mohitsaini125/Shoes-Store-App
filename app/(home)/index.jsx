@@ -28,14 +28,23 @@ export default function Homepage() {
   const [updatedShoesData, setUpdatedShoesData] = useState([]);
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
+  const [category, setCategory] = useState("All");
   function clear() {
     setInput("");
     setUpdatedShoesData(shoesData);
-    inputRef.current?.blur();
   }
-  useEffect(function () {
-    setUpdatedShoesData(shoesData);
-  }, []);
+  useEffect(
+    function () {
+      if (category == "All") setUpdatedShoesData(shoesData);
+      else {
+        const arr = shoesData.filter(function (shoe) {
+          if (shoe.shoeCategory == category) return true;
+        });
+        setUpdatedShoesData(arr);
+      }
+    },
+    [category]
+  );
   function handleSearch(value) {
     setInput(value);
     if (!value.trim()) setUpdatedShoesData(shoesData);
@@ -55,12 +64,14 @@ export default function Homepage() {
       setFavShoes(storedShoes);
     });
   }, []);
+
   const [activeIndex, setActiveIndex] = useState(0);
   function handleScroll(event) {
     const scrollX = event.nativeEvent.contentOffset.x;
     const index = Math.round(scrollX / width);
     setActiveIndex(index);
   }
+
   return (
     <View>
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
@@ -83,7 +94,11 @@ export default function Homepage() {
       </View>
       <View>
         <View style={styles.searchBar}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              inputRef.current?.blur();
+            }}
+          >
             <MagnifyingGlassIcon size={26} color="black" />
           </TouchableOpacity>
           <TextInput
@@ -126,9 +141,24 @@ export default function Homepage() {
         showsHorizontalScrollIndicator={false}
         style={styles.categoriesContainer}
       >
-        {categories.map((category, index) => (
-          <TouchableOpacity style={styles.category} key={index}>
-            <Text>{category}</Text>
+        {categories.map((Category, index) => (
+          <TouchableOpacity
+            style={{
+              ...styles.category,
+              backgroundColor: category == Category ? "black" : "white",
+            }}
+            key={index}
+            onPress={function () {
+              setCategory(Category);
+            }}
+          >
+            <Text
+              style={{
+                color: category == Category ? "white" : "black",
+              }}
+            >
+              {Category}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
