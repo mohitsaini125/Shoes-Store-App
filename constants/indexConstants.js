@@ -1,9 +1,9 @@
 export const imgs = [
-  require("../assets/images/banner1.png"),
+  require("../assets/images/banner1.jpg"),
   require("../assets/images/banner2.jpg"),
-  require("../assets/images/banner3.png"),
-  require("../assets/images/banner4.webp"),
-  require("../assets/images/banner2.jpg"),
+  require("../assets/images/banner3.jpeg"),
+  require("../assets/images/banner4.jpeg"),
+  require("../assets/images/banner5.jpeg"),
 ];
 
 export const categories = [

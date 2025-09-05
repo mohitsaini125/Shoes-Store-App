@@ -21,6 +21,7 @@ import {
   View,
 } from "react-native";
 import ShoeCard from "../../components/shoeCard";
+import SideBar from "../../components/sideBar";
 import { categories, imgs, shoesData } from "../../constants/indexConstants";
 const { width } = Dimensions.get("window");
 
@@ -29,6 +30,11 @@ export default function Homepage() {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
   const [category, setCategory] = useState("All");
+  const [favShoes, setFavShoes] = useState([]);
+  const bannerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const resetTimeout = useRef(null);
+
   function clear() {
     setInput("");
     setUpdatedShoesData(shoesData);
@@ -57,7 +63,6 @@ export default function Homepage() {
       setUpdatedShoesData([]);
     }
   }
-  const [favShoes, setFavShoes] = useState([]);
   useEffect(function () {
     AsyncStorage.getItem("fav-shoes").then(function (data) {
       const storedShoes = data ? JSON.parse(data) : [];
@@ -65,15 +70,28 @@ export default function Homepage() {
     });
   }, []);
 
-  const [activeIndex, setActiveIndex] = useState(0);
   function handleScroll(event) {
     const scrollX = event.nativeEvent.contentOffset.x;
     const index = Math.round(scrollX / width);
     setActiveIndex(index);
+    if (resetTimeout.current) clearTimeout(resetTimeout.current);
+
+    resetTimeout.current = setTimeout(() => {
+      if (bannerRef.current) {
+        bannerRef.current.scrollTo({ x: 0, animated: true });
+        setActiveIndex(0);
+      }
+    }, 2000);
   }
+  useEffect(() => {
+    return () => {
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+    };
+  }, []);
 
   return (
     <View>
+      {<SideBar />}
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
       <View style={styles.nikeLogoContainer}>
         <Image
@@ -87,9 +105,9 @@ export default function Homepage() {
           <Link href="/cart">
             <ShoppingBagOpenIcon size={26} color="black" />
           </Link>
-          <Link href="/menu">
+          <TouchableOpacity onPress={() => setSidebarVisible(true)}>
             <TextOutdentIcon size={26} color="black" />
-          </Link>
+          </TouchableOpacity>
         </View>
       </View>
       <View>
@@ -116,13 +134,19 @@ export default function Homepage() {
       <ScrollView
         horizontal
         pagingEnabled
+        ref={bannerRef}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
         style={styles.banner}
       >
         {imgs.map((img, index) => (
-          <Image source={img} key={index} style={styles.bannerImage} />
+          <Image
+            source={img}
+            key={index}
+            style={styles.bannerImage}
+            resizeMode="cover"
+          />
         ))}
       </ScrollView>
       <View style={styles.dotContainer}>
@@ -211,7 +235,7 @@ const styles = StyleSheet.create({
   },
   bannerImage: {
     width: 320,
-    height: 100,
+    height: 80,
     borderRadius: 10,
   },
   dotContainer: {
