@@ -1,12 +1,19 @@
+import { Link } from "expo-router";
 import { X } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function SideBar(setSidebarVisible) {
+export default function SideBar({ setSidebarVisible }) {
   const sidebarMenus = [
     {
       label: "Home",
       onPress: () => {
         <Link href={"/"} />;
+      },
+    },
+    {
+      label: "Wishlist",
+      onPress: () => {
+        <Link href="/favourite" />;
       },
     },
     {
@@ -31,6 +38,11 @@ export default function SideBar(setSidebarVisible) {
 
   return (
     <View style={styles.sidebarOverlay}>
+      <TouchableOpacity
+        style={styles.sidebarBackdrop}
+        onPress={() => setSidebarVisible(false)}
+        activeOpacity={1}
+      />
       <View style={styles.sidebar}>
         <TouchableOpacity
           style={{ alignSelf: "flex-end", margin: 10 }}
@@ -53,11 +65,6 @@ export default function SideBar(setSidebarVisible) {
           </TouchableOpacity>
         ))}
       </View>
-      <TouchableOpacity
-        style={styles.sidebarBackdrop}
-        onPress={() => setSidebarVisible(false)}
-        activeOpacity={1}
-      />
     </View>
   );
 }
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
   sidebarOverlay: {
     position: "absolute",
     top: 0,
-    left: 0,
+    right: 0,
     width: "100%",
     height: "100%",
     zIndex: 100,
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     elevation: 10,
     shadowColor: "#000",
-    shadowOffset: { width: 2, height: 0 },
+    shadowOffset: { width: 1, height: 0 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
   },

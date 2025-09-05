@@ -34,6 +34,7 @@ export default function Homepage() {
   const bannerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const resetTimeout = useRef(null);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   function clear() {
     setInput("");
@@ -91,7 +92,7 @@ export default function Homepage() {
 
   return (
     <View>
-      {<SideBar />}
+      {sidebarVisible && <SideBar setSidebarVisible={setSidebarVisible} />}
       <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
       <View style={styles.nikeLogoContainer}>
         <Image
@@ -103,9 +104,13 @@ export default function Homepage() {
             <HeartIcon size={26} color="black" />
           </Link>
           <Link href="/cart">
-            <ShoppingBagOpenIcon size={26} color="black" />
+            <ShoppingBagOpenIcon size={26} color="black" weight="fill" />
           </Link>
-          <TouchableOpacity onPress={() => setSidebarVisible(true)}>
+          <TouchableOpacity
+            onPress={function () {
+              setSidebarVisible(true);
+            }}
+          >
             <TextOutdentIcon size={26} color="black" />
           </TouchableOpacity>
         </View>
@@ -122,7 +127,7 @@ export default function Homepage() {
           <TextInput
             ref={inputRef}
             placeholder="Search your shoes"
-            style={{ fontSize: 17, width: 230 }}
+            style={{ fontSize: 14, width: 230 }}
             value={input}
             onChangeText={handleSearch}
           />
@@ -256,9 +261,9 @@ const styles = StyleSheet.create({
   },
   category: {
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
     marginRight: 10,
     boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.3)",
   },
@@ -275,7 +280,7 @@ const styles = StyleSheet.create({
   shoeCardsContainerList: {
     marginTop: 15,
     alignItems: "center",
-    height: 400,
+    height: 470,
     borderRadius: 10,
   },
 });
