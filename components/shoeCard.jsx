@@ -26,7 +26,7 @@ export default function shoeCard({ item, favShoes, setFavShoes }) {
     <Link href={`/detailsFolder/${item.shoeID}`}>
       <View style={styles.shoeCard}>
         <LinearGradient
-          colors={["gray", "white"]}
+          colors={["lightgreen", "white"]}
           style={styles.cornerDesign}
         />
 
@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
   cornerDesign: {
     position: "absolute",
     width: "100%",
-    height: "20%",
-    opacity: 0.35,
+    height: "100%",
+    opacity: 0.1,
   },
   shoeCardRating: {
     flexDirection: "row",

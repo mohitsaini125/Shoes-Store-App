@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { shoesData } from "../../constants/indexConstants";
+
 export default function shoeDetails() {
   const [shoeItem, setShoeItem] = useState([]);
   const [favShoes, setFavShoes] = useState([]);

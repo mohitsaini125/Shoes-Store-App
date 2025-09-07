@@ -123,6 +123,7 @@ export default function Homepage() {
             onPress={() => {
               inputRef.current?.blur();
             }}
+            style={styles.magnifyStyle}
           >
             <MagnifyingGlassIcon size={26} color="black" />
           </TouchableOpacity>
@@ -183,9 +184,23 @@ export default function Homepage() {
               setCategory(Category);
             }}
           >
+            {category != Category && (
+              <LinearGradient
+                colors={["lightgray", "white"]}
+                style={{
+                  position: "absolute",
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: 4,
+                  opacity: 0.4,
+                }}
+              />
+            )}
             <Text
               style={{
                 color: category == Category ? "white" : "black",
+                marginHorizontal: 8,
+                marginVertical: 5,
               }}
             >
               {Category}
@@ -244,12 +259,18 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 5,
+    justifyContent: "space-evenly",
     paddingHorizontal: 10,
     marginTop: 5,
     borderWidth: 1,
     marginHorizontal: 20,
     borderRadius: 10,
+    backgroundColor: "white",
+  },
+  magnifyStyle: {
+    borderRightWidth: 1,
+    padding: 7,
+    marginLeft: -10,
   },
   banner: {
     marginHorizontal: 20,
@@ -281,8 +302,6 @@ const styles = StyleSheet.create({
     height: 30,
     borderWidth: 1,
     borderRadius: 4,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
     marginRight: 10,
     boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.3)",
   },
@@ -291,7 +310,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "21%",
-    opacity: 0.35,
+    opacity: 0.4,
   },
   shoeCardsContainerList: {
     marginTop: 7,
