@@ -2,6 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import {
+  ArrowsDownUpIcon,
+  FadersHorizontalIcon,
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingBagOpenIcon,
@@ -91,12 +93,12 @@ export default function Homepage() {
   }, []);
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {sidebarVisible && <SideBar setSidebarVisible={setSidebarVisible} />}
-      <LinearGradient colors={["black", "white"]} style={styles.cornerDesign} />
+      <LinearGradient colors={["green", "white"]} style={styles.cornerDesign} />
       <View style={styles.nikeLogoContainer}>
         <Image
-          source={require("../../assets/images/nike.png")}
+          source={require("../../assets/images/logo.png")}
           style={styles.nikeLogo}
         />
         <View style={{ flexDirection: "row", gap: 20 }}>
@@ -197,8 +199,8 @@ export default function Homepage() {
           data={updatedShoesData}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ gap: 5 }}
-          columnWrapperStyle={{ gap: 5 }}
+          contentContainerStyle={{ gap: 1 }}
+          columnWrapperStyle={{ gap: 1 }}
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item }) => (
             <ShoeCard
@@ -209,6 +211,21 @@ export default function Homepage() {
           )}
         />
       </View>
+      <LinearGradient
+        colors={["lightgray", "white"]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 0, y: 0 }}
+        style={styles.sortFilter}
+      >
+        <TouchableOpacity style={styles.sortFilterButton}>
+          <ArrowsDownUpIcon size={21} />
+          <Text style={{ fontWeight: 600 }}>SORT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.sortFilterButton}>
+          <FadersHorizontalIcon size={23} />
+          <Text style={{ fontWeight: 600 }}>FILTER</Text>
+        </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 }
@@ -217,26 +234,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 30,
-    marginTop: 50,
+    marginTop: 40,
     alignItems: "center",
   },
   nikeLogo: {
-    width: 60,
-    height: 40,
+    width: 70,
+    height: 50,
   },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
     paddingHorizontal: 10,
-    marginTop: 16,
+    marginTop: 5,
     borderWidth: 1,
     marginHorizontal: 20,
     borderRadius: 10,
   },
   banner: {
     marginHorizontal: 20,
-    marginTop: 16,
+    marginTop: 9,
+    marginBottom: 0,
   },
   bannerImage: {
     width: 320,
@@ -247,19 +265,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 2,
     gap: 10,
   },
   dot: {
-    width: 7,
-    height: 7,
+    width: 5,
+    height: 5,
     borderRadius: 5,
   },
   categoriesContainer: {
-    marginTop: 12,
+    marginTop: 7,
     marginLeft: 10,
   },
   category: {
+    height: 30,
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 8,
@@ -270,17 +289,31 @@ const styles = StyleSheet.create({
 
   cornerDesign: {
     position: "absolute",
-    width: 400,
-    height: 400,
-    borderRadius: 200,
-    right: -200,
-    top: -120,
-    opacity: 0.2,
+    width: "100%",
+    height: "21%",
+    opacity: 0.35,
   },
   shoeCardsContainerList: {
-    marginTop: 15,
+    marginTop: 7,
     alignItems: "center",
-    height: 470,
+    height: "64%",
     borderRadius: 10,
+  },
+  sortFilter: {
+    position: "absolute",
+    width: "100%",
+    height: "7%",
+    bottom: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+  },
+  sortFilterButton: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 5,
+    flex: 1,
   },
 });

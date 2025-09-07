@@ -15,6 +15,8 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { shoesData } from "../../constants/indexConstants";
 export default function shoeDetails() {
   const [shoeItem, setShoeItem] = useState([]);
+  const [favShoes, setFavShoes] = useState([]);
+  const [cartShoes, setCartShoes] = useState([]);
   const params = useLocalSearchParams();
   const Id = params.id;
   useEffect(function () {
@@ -26,7 +28,6 @@ export default function shoeDetails() {
       return false;
     });
   }, []);
-  const [favShoes, setFavShoes] = useState([]);
   useEffect(function () {
     AsyncStorage.getItem("fav-shoes").then(function (data) {
       const storedFavShoes = data ? JSON.parse(data) : [];
@@ -49,6 +50,25 @@ export default function shoeDetails() {
       setFavShoes(arr);
       AsyncStorage.setItem("fav-shoes", JSON.stringify(arr));
     }
+  }
+  // useEffect(function () {
+  //   AsyncStorage.getItem("cart-shoes").then(function (data) {
+  //     const storedCartArr = data ? JSON.parse(data) : [];
+
+  //   });
+  // });
+  useEffect(function () {
+    AsyncStorage.getItem("cart-shoes").then(function (data) {
+      const newArr = data ? JSON.parse(data) : [];
+      setCartShoes(newArr);
+    });
+  }, []);
+  function handleCart() {
+    AsyncStorage.getItem("cart-shoes").then(function (data) {
+      const arr = data ? JSON.parse(data) : [];
+      const newArr = [...arr];
+      AsyncStorage.setItem("cart-shoes", JSON.stringify(newArr));
+    });
   }
   return (
     <View>
@@ -85,7 +105,7 @@ export default function shoeDetails() {
         </View>
         <View style={styles.shoeNameHalf2}>
           <StarIcon size={15} color="gold" weight="fill" />
-          <Text>{shoeItem.rating}</Text>
+          <Text style={{ fontSize: 12 }}>{shoeItem.rating}</Text>
         </View>
       </View>
       <View style={styles.shoeBackgroundContainer}>
@@ -141,7 +161,7 @@ export default function shoeDetails() {
               {shoeItem.mrp}
             </Text>
           </View>
-          <Text style={{ color: "red", fontSize: 12, fontWeight: 600 }}>
+          <Text style={{ color: "#F2660E", fontSize: 12, fontWeight: 600 }}>
             25%OFF
           </Text>
         </View>
@@ -156,8 +176,8 @@ export default function shoeDetails() {
           >
             <TouchableOpacity onPress={toggleLike}>
               <HeartIcon
-                size={20}
-                color="black"
+                size={23}
+                color="red"
                 weight={isfav ? "fill" : "light"}
               />
             </TouchableOpacity>
@@ -204,7 +224,7 @@ export default function shoeDetails() {
         <Text numberOfLines={3}>{shoeItem.description}</Text>
       </View>
       <View style={styles.cartBuyContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleCart}>
           <View style={styles.cartButton}>
             <Text style={{ fontSize: 18, fontWeight: 600 }}>Add to Cart</Text>
           </View>
@@ -274,10 +294,11 @@ const styles = StyleSheet.create({
     alignshoeItems: "center",
     borderWidth: 1.5,
     borderColor: "lightgray",
-    paddingHorizontal: 10,
-    paddingVertical: 1.5,
+    paddingHorizontal: 7,
     height: 26,
     borderRadius: 15,
+    marginVertical: "auto",
+    paddingTop: 3,
   },
   shoeBackgroundContainer: {
     marginTop: 10,

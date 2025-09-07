@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import { HeartIcon, StarIcon } from "phosphor-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -24,17 +25,35 @@ export default function shoeCard({ item, favShoes, setFavShoes }) {
   return (
     <Link href={`/detailsFolder/${item.shoeID}`}>
       <View style={styles.shoeCard}>
+        <LinearGradient
+          colors={["gray", "white"]}
+          style={styles.cornerDesign}
+        />
+
         <View style={{}}>
           <View style={styles.shoeCardRating}>
-            <StarIcon size={11} color="gold" weight="fill" />
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: 600,
-              }}
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
             >
-              {item.rating}
-            </Text>
+              <StarIcon size={12} color="gold" weight="fill" />
+              <Text
+                style={{
+                  fontSize: 11,
+                  fontWeight: 600,
+                }}
+              >
+                {item.rating}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
+                <HeartIcon
+                  size={19}
+                  color="#F2660E"
+                  weight={isfav ? "fill" : "light"}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
           <Image source={item.imgLink} style={styles.shoeCardImage} />
         </View>
@@ -42,33 +61,36 @@ export default function shoeCard({ item, favShoes, setFavShoes }) {
           <Text numberOfLines={1} style={{ fontWeight: 700 }}>
             {item.name}
           </Text>
-          <Text style={{ color: "gray", fontWeight: 400, fontSize: 13 }}>
-            {item.shoeCategory}
-          </Text>
-        </View>
-        <View style={styles.shoeCardPrice}>
-          <Text style={{ fontWeight: 800, fontSize: 18, marginRight: 10 }}>
-            {item.price}
-          </Text>
-          <Text
+          <View
             style={{
-              textDecorationLine: "line-through",
-              marginLeft: -60,
-              marginTop: 0,
-              color: "gray",
-              fontWeight: 500,
-              fontSize: 12,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginTop: 5,
             }}
           >
-            {item.mrp}
-          </Text>
-          <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
-            <HeartIcon
-              size={19}
-              color="#F2660E"
-              weight={isfav ? "fill" : "light"}
-            />
-          </TouchableOpacity>
+            <Text style={{ color: "gray", fontWeight: 400, fontSize: 13 }}>
+              {item.shoeCategory}
+            </Text>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+            >
+              <Text style={{ fontWeight: 800, fontSize: 18 }}>
+                {item.price}
+              </Text>
+              <Text
+                style={{
+                  textDecorationLine: "line-through",
+                  marginTop: 0,
+                  color: "gray",
+                  fontWeight: 500,
+                  fontSize: 12,
+                }}
+              >
+                {item.mrp}
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
     </Link>
@@ -78,32 +100,35 @@ export default function shoeCard({ item, favShoes, setFavShoes }) {
 const styles = StyleSheet.create({
   shoeCard: {
     borderWidth: 0.5,
-    borderRadius: 6,
-    padding: 5,
-    width: 165,
-    height: 190,
+    borderRadius: 4,
+    width: 168,
+    height: 185,
     borderColor: "gray",
-    boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.3)",
+    boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.2)",
+  },
+  cornerDesign: {
+    position: "absolute",
+    width: "100%",
+    height: "20%",
+    opacity: 0.35,
   },
   shoeCardRating: {
     flexDirection: "row",
-    gap: 3,
-    width: 39,
-    borderRadius: 5,
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 2,
+    marginHorizontal: 5,
+    marginVertical: 5,
   },
   shoeCardImage: {
     width: 100,
     height: 100,
     alignSelf: "center",
-    marginTop: -20,
+    marginTop: -10,
     marginBottom: 5,
   },
   shoeCardName: {
     marginTop: 5,
-    marginHorizontal: 3,
+    marginHorizontal: 6,
   },
   shoeCardPrice: {
     flexDirection: "row",
@@ -111,13 +136,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 5,
     marginHorizontal: 3,
-  },
-  likeButton: {
-    // height: 25,
-    // width: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    // boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.2)",
-    // borderRadius: 40,
   },
 });

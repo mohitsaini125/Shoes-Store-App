@@ -6,6 +6,29 @@ export const imgs = [
   require("../assets/images/banner5.jpeg"),
 ];
 
+export const sidebarMenus = [
+  {
+    label: "Wishlist",
+    onPress: "/favourite",
+  },
+  {
+    label: "Cart",
+    onPress: "/cart",
+  },
+  {
+    label: "Track Your Order",
+    onPress: "/",
+  },
+  {
+    label: "Account",
+    onPress: "/",
+  },
+  {
+    label: "Login/Logout",
+    onPress: "/",
+  },
+];
+
 export const categories = [
   "All",
   "Running",

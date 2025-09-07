@@ -1,41 +1,8 @@
 import { Link } from "expo-router";
 import { X } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { sidebarMenus } from "../constants/indexConstants";
 export default function SideBar({ setSidebarVisible }) {
-  const sidebarMenus = [
-    {
-      label: "Home",
-      onPress: () => {
-        <Link href={"/"} />;
-      },
-    },
-    {
-      label: "Wishlist",
-      onPress: () => {
-        <Link href="/favourite" />;
-      },
-    },
-    {
-      label: "Account",
-      onPress: () => {
-        <Link href={"/"} />;
-      },
-    },
-    {
-      label: "Login",
-      onPress: () => {
-        <Link href={"/"} />;
-      },
-    },
-    {
-      label: "Logout",
-      onPress: () => {
-        <Link href={"/"} />;
-      },
-    },
-  ];
-
   return (
     <View style={styles.sidebarOverlay}>
       <TouchableOpacity
@@ -53,16 +20,9 @@ export default function SideBar({ setSidebarVisible }) {
           <X size={28} color="black" />
         </TouchableOpacity>
         {sidebarMenus.map((menu, idx) => (
-          <TouchableOpacity
-            key={idx}
-            style={styles.sidebarMenuItem}
-            onPress={() => {
-              setSidebarVisible(false);
-              menu.onPress();
-            }}
-          >
+          <Link key={idx} style={styles.sidebarMenuItem} href={menu.onPress}>
             <Text style={styles.sidebarMenuText}>{menu.label}</Text>
-          </TouchableOpacity>
+          </Link>
         ))}
       </View>
     </View>
@@ -78,6 +38,7 @@ const styles = StyleSheet.create({
     height: "100%",
     zIndex: 100,
     flexDirection: "row",
+    flex: 1,
   },
   sidebar: {
     width: "70%",
